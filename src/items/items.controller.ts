@@ -2,6 +2,7 @@ import { Controller, Get, Post, Put, Delete, Body, Req, Res, Param } from '@nest
 import { CreateItemDto } from './dto/create-item.dto';
 import { Request, Response } from 'express';
 import { ItemsService } from './items.service';
+import { ApiBearerAuth } from '@nestjs/swagger';
 
 @Controller('items')
 export class ItemsController {
@@ -11,9 +12,12 @@ export class ItemsController {
     return 'Hello World'
   }
 
+
+
+  @ApiBearerAuth()
   @Post()
   create(@Body() createItemDto: CreateItemDto): string {
-    return `Name: ${createItemDto.name} Desc: ${createItemDto.description}`
+    return `You Are Now Authorized `
   }
 
 
